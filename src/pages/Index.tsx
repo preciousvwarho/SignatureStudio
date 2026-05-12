@@ -37,7 +37,7 @@ const Index = () => {
             Whether you're recording your first track or producing your next hit, Signature Sound Studio delivers clarity, creativity, and excellence in every beat.
           </p>
           <div className="d-flex align-items-center justify-content-center gap-3 flex-wrap">
-            <a href="/services" className="btn-studio btn-gold">Book Session</a>
+            <a href="/booking" className="btn-studio btn-gold">Book Session</a>
             <a href="/about" className="btn-studio btn-ghost">View More</a>
           </div>
         </div>
@@ -134,7 +134,7 @@ const Index = () => {
             <p className="text-muted-custom mb-4" style={{ maxWidth: "32rem" }}>
               Ready to create your signature sound? Book a session with us today and let's bring your vision to life.
             </p>
-            <a href="/services" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+            <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
           </div>
           <div className="">
             <div className="mediaCard aspect-square">

@@ -101,7 +101,7 @@ const Services = () => {
           <div className="container">
             <p className="eyebrow-script">Ready to create your signature sound?</p>
             <h2 className="section-title mb-4" style={{ maxWidth: "48rem" }}>Book your session today and experience the Signature Sound difference.</h2>
-            <a href="/services" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+            <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
           </div>
         </section>
 

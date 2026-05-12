@@ -1,5 +1,6 @@
 import { NavLink } from "@/components/NavLink";
 import { Link } from "react-router-dom";
+import logoImg from "@/assets/logo.png";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -12,7 +13,8 @@ export const SiteNav = () => (
   <header className="site-header">
     <nav className="container site-nav d-flex align-items-center justify-content-between">
       <Link to="/" aria-label="Signature Sound Studio home">
-        <span className="brand-mark">S</span>
+         <img src={logoImg} alt="Person listening with headphones" loading="lazy" 
+         width={85}/>
       </Link>
 
       <ul className="nav-menu">
@@ -29,7 +31,7 @@ export const SiteNav = () => (
         ))}
       </ul>
 
-      <Link to="/services" className="btn-studio btn-ghost">
+      <Link to="/contact" className="btn-studio btn-ghost">
         Contact us
       </Link>
     </nav>

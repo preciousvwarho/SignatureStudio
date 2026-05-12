@@ -111,7 +111,7 @@ const StudioBlock = ({ title, intro, description, tags, whatYouGet, galleryLabel
       <div className="container mt-5 pt-4">
         <div>
           <h3 className="section-title mb-4" style={{ maxWidth: "48rem" }}>{callout}</h3>
-          <a href="/services" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+          <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
         </div>
       </div>
     </section>
