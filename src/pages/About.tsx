@@ -44,8 +44,8 @@ const About = () => {
 
       <section className="container page-section-sm">
         <div className="row g-5 align-items-start">
-          <div className="col-md-3 text-center">
-            <p className="mb-0" style={{ fontSize: "4rem", lineHeight: 1, color:"#fff", fontWeight:"500" }}>4+</p>
+         <div className="col-4 col-md-3 text-start text-md-center">
+            <p className="mb-0 chageFont" style={{ fontSize: "4rem", lineHeight: 1, color:"#fff", fontWeight:"500" }}>4+</p>
             <p className="text-muted-custom small mt-1" style={{color:"#fff", fontWeight:"500" }}>years</p>
           </div>
           <div className="col-md-9" style={{ maxWidth: "46rem", color:"#DBDBDB" }}>
@@ -56,11 +56,17 @@ const About = () => {
       </section>
 
       <section className="page-section-sm">
-        <div className="studio-parent g-4 mb-4">
+        <div className="studio-parent mb-4">
           {[galleryDrums, galleryLounge, galleryKeys].map((image, index) => (
-            <div className="" key={image}>
+            <div className="gallery-scroll-tile" key={image}>
               <div className="media-card aspect-4-3">
-                <img src={image} alt={`Studio gallery ${index + 1}`} loading="lazy" width={1024} height={1024} />
+                <img
+                  src={image}
+                  alt={`Studio gallery ${index + 1}`}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                />
               </div>
             </div>
           ))}
@@ -68,25 +74,39 @@ const About = () => {
 
         <div className="container d-flex align-items-center gap-3">
           <p className="small mb-0 font-display">Photo Gallery</p>
-          <span className="flex-grow-1" style={{ height: 1, background: "#DBDBDB" }} />
+          <span
+            className="flex-grow-1"
+            style={{ height: 1, background: "#DBDBDB" }}
+          />
         </div>
       </section>
-
+            
       <section className="container page-section">
         <div className="row g-5 align-items-center">
           <div className="col-md-7">
-            <h2 className="section-title mb-5">Why Choose<br /><span className="text-gold-gradient">Signature</span> Sound Studio?</h2>
+            <h2 className="section-title mb-5">
+              Why Choose<br />
+              <span className="text-gold-gradient">Signature</span> Sound Studio?
+            </h2>
             <div className="row g-3">
               {reasons.map((reason) => (
-                <div className="col-sm-6" key={reason}>
+                <div className="col-6 col-sm-6" key={reason}>
                   <div className="reason-card small">{reason}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="col-md-5">
+
+          {/* Desktop only — image never shown on mobile */}
+          <div className="col-md-5 d-none d-md-block">
             <div className="media-card aspect-3-4">
-              <img src={headphonesWoman} alt="Person listening with headphones" loading="lazy" width={768} height={1024} />
+              <img
+                src={headphonesWoman}
+                alt="Person listening with headphones"
+                loading="lazy"
+                width={768}
+                height={1024}
+              />
             </div>
           </div>
         </div>
@@ -94,21 +114,40 @@ const About = () => {
 
       <section className="position-relative page-sect overflow-hidden">
         <div className="position-absolute top-0 start-0 w-100 h-100">
-          <img src={expertiseBg} alt="" loading="lazy" width={1600} height={800} className="image-fill" />
-          <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: "hsl(var(--background) / 0.8)" }} />
+          <img
+            src={expertiseBg}
+            alt=""
+            loading="lazy"
+            width={1600}
+            height={800}
+            className="image-fill"
+          />
+          <div
+            className="position-absolute top-0 start-0 w-100 h-100"
+            style={{ background: "hsl(var(--background) / 0.8)" }}
+          />
         </div>
         <div className="container position-relative z-1">
           <h2 className="section-title mb-5">Our Expertise</h2>
           <div className="row g-4">
             {expertise.map((item) => (
-              <div className="col-md-4" key={item.num}>
-                <article className="package-card h-100" style={{ background: "hsl(var(--card) / 0.4)", backdropFilter: "blur(14px)" }}>
+              <div className="col-12 col-md-4" key={item.num}>
+                <article
+                  className="package-card h-100"
+                  style={{
+                    background: "hsl(var(--card) / 0.4)",
+                    backdropFilter: "blur(14px)",
+                  }}
+                >
                   <div className="d-flex align-items-start justify-content-between mb-5">
                     <span className="text-muted-custom">{item.num}.</span>
                     <ArrowUpRight className="icon-md text-primary-custom" />
                   </div>
                   <h3 className="font-display fs-4 mb-2">{item.title}</h3>
-                  <p className="small text-muted-custom mb-0">Technical assistance available to ensure your session runs smoothly.</p>
+                  <p className="small text-muted-custom mb-0">
+                    Technical assistance available to ensure your session runs
+                    smoothly.
+                  </p>
                 </article>
               </div>
             ))}
@@ -119,8 +158,16 @@ const About = () => {
       <section className="wave-bg page-section overflow-hidden">
         <div className="container">
           <p className="eyebrow-script">Ready to create your signature sound?</p>
-          <h2 className="section-title mb-4" style={{ maxWidth: "48rem" }}>Book your session today and experience the Signature Sound difference.</h2>
-          <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+          <h2
+            className="section-title mb-4"
+            style={{ maxWidth: "48rem" }}
+          >
+            Book your session today and experience the Signature Sound
+            difference.
+          </h2>
+          <a href="/booking" className="btn-studio btn-gold">
+            Book Session <ArrowRight className="icon-sm" />
+          </a>
         </div>
       </section>
 

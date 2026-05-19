@@ -561,7 +561,7 @@ input {
 }
 
 .pages-hero-section>div {
-  flex: 1 1 300px;
+  flex: 1 1 0px;
 }
 
 .abt-hero-image {
@@ -879,6 +879,9 @@ select.custom-input {
   .nav-menu {
     display: none;
   }
+  .page-section-sm {
+    padding-top: 0rem;
+  }
 
   .hero-pad {
     padding-top: 7rem;
@@ -908,5 +911,545 @@ select.custom-input {
   .service-image {
     min-height: auto;
     aspect-ratio: 1.08 / 1;
+  }
+}
+
+
+
+
+.gallery-scroll-tile {
+  flex: 0 0 calc(33.333% - 1.4rem);
+  min-width: 220px;
+}
+
+@media (max-width: 767.98px) {
+  .gallery-scroll-tile {
+    flex: 0 0 72vw;
+    min-width: 0;
+  }
+}
+
+
+/* ─── 2. studio-parent side padding on mobile only ──────────────*/
+@media (max-width: 991.98px) {
+  .studio-parent {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+
+/* ─── 3. studioCol width on mobile/tablet ───────────────────────*/
+@media (max-width: 991.98px) {
+  .studioCol {
+    flex: 0 0 80% !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .studioCol {
+    flex: 0 0 88% !important;
+  }
+}
+
+
+/* ─── 4. containStudio: strip the 7rem left margin on mobile ────
+   Desktop original: margin-left: 7rem  ← PRESERVED, not touched  */
+@media (max-width: 991.98px) {
+  .containStudio {
+    margin-left: 0 !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+
+/* ─── 5. action-section: strip left:20rem/top:8rem on mobile ────
+   Desktop original: left:20rem; top:8rem  ← PRESERVED above lg   */
+@media (max-width: 991.98px) {
+  .action-section {
+    position: static !important;
+    left: unset !important;
+    top: unset !important;
+  }
+}
+
+
+/* ─── 6. newsletter-div: strip left:12rem on mobile ────────────
+   Desktop original: left:12rem  ← PRESERVED above lg             */
+@media (max-width: 991.98px) {
+  .newsletter-div {
+    position: static !important;
+    left: unset !important;
+  }
+}
+
+
+/* ─── 7. footer-bottom: strip left:5rem on mobile ──────────────
+   Desktop original: left:5rem  ← PRESERVED above lg              */
+@media (max-width: 991.98px) {
+  .footer-bottom {
+    position: static !important;
+    left: unset !important;
+  }
+
+  /* The nested .small also has position/bottom/left offsets */
+  .footer-bottom .small {
+    position: static !important;
+    left: unset !important;
+    bottom: unset !important;
+  }
+}
+
+
+/* ─── 8. abt-hero-image: was position:absolute, stack on mobile ─
+   Desktop original: position:absolute; top:0; right:10%; z-index:10  */
+@media (max-width: 767.98px) {
+  .abt-hero-image {
+    position: static !important;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .abt-hero-image img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+  }
+
+  .pages-hero-section {
+    flex-direction: column;
+  }
+}
+
+
+/* ─── 9. serv-box: strip left:10% on mobile ────────────────────
+   Desktop original: left:10%  ← PRESERVED above md              */
+@media (max-width: 767.98px) {
+  .serv-box {
+    left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ─── 10. service-title-overlap: scale font on mobile only ──────
+   Desktop original: clamp(2.8rem,6vw,4.5rem)  ← untouched        */
+@media (max-width: 767.98px) {
+  .service-title-overlap {
+    font-size: clamp(2rem, 7vw, 3rem) !important;
+    width: 100% !important;
+  }
+
+  .service-image {
+    width: 100%;
+  }
+}
+
+
+/* ─── 11. feature-card: strip stagger margin + highlight scale ──
+   Desktop original: margin-top:5rem; highlight: translateY+scale  */
+@media (max-width: 767.98px) {
+  .feature-card {
+    margin-top: 0 !important;
+  }
+
+  .feature-card-highlight {
+    transform: none !important;
+    min-height: auto !important;
+  }
+}
+
+
+/* ─── 12. mediaCard: cap height on mobile ───────────────────────
+   Desktop original: height:70vh  ← PRESERVED above lg            */
+@media (max-width: 991.98px) {
+  .mediaCard {
+    height: 50vw !important;
+    min-height: 260px;
+    max-height: 420px;
+  }
+}
+
+
+
+
+/* ================================================================
+   MOBILE NAV OVERLAY
+   Add these rules to your global CSS file (e.g. index.css / global.css)
+   ================================================================ */
+
+/* Hamburger button */
+.mobile-hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(12px);
+  color: hsl(var(--foreground));
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.mobile-hamburger:hover {
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+
+/* Full-screen overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: hsl(var(--background));
+
+  /* Hidden state */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.mobile-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Top bar: logo + close button */
+.mobile-overlay-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+/* Nav link list */
+.mobile-overlay-nav {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Each item slides in when overlay opens */
+.mobile-nav-item {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.mobile-overlay.is-open .mobile-nav-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Link styling — large, left-aligned, matching screenshot */
+.mobile-nav-link {
+  display: block;
+  padding: 0.85rem 0;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: hsl(var(--foreground) / 0.78);
+  /* border-bottom: 1px solid hsl(var(--border)); */
+  transition: color 180ms ease, padding-left 180ms ease;
+}
+
+.mobile-nav-link:hover {
+  color: hsl(var(--foreground));
+  padding-left: 0.5rem;
+}
+
+.mobile-nav-link.is-active {
+  color: hsl(var(--primary));
+}
+
+/* Bottom CTA */
+.mobile-overlay-footer {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+/* Only show overlay on mobile — safety guard */
+@media (min-width: 768px) {
+  .mobile-overlay {
+    display: none !important;
+  }
+
+  .mobile-hamburger {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+/* ================================================================
+   HOME PAGE — MOBILE RESPONSIVE ADDITIONS
+   Append these to your existing global CSS file.
+   Desktop styles are untouched — these only activate on mobile.
+   ================================================================ */
+
+
+/* ── Feature cards ──────────────────────────────────────────────
+   Desktop: .feature-card has margin-top:5rem stagger + highlight
+   lifts with transform. Both are flattened on mobile via your
+   existing rules. This just ensures the row wraps cleanly.        */
+@media (max-width: 767.98px) {
+  .feature-card {
+    margin-top: 0 !important;
+    min-height: auto !important;
+  }
+
+  .feature-card-highlight {
+    transform: none !important;
+    min-height: auto !important;
+  }
+}
+
+
+/* ── "Come create magic" section ────────────────────────────────
+   Desktop: uses .action-section with position:relative;
+   left:20rem; top:8rem — good for the offset layout.
+   Mobile: stack text above image, full width, no offsets.         */
+.magic-section {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.magic-image {
+  flex: 0 0 45%;
+}
+
+.magic-content {
+  flex: 1;
+}
+
+@media (max-width: 991.98px) {
+  .magic-section {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .magic-image {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .magic-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Center the CTA button when text is centered */
+  .magic-content .btn-studio {
+    margin: 0 auto;
+  }
+}
+
+
+/* ── Hero section ───────────────────────────────────────────────
+   Ensure the video doesn't bleed over text on very small screens  */
+@media (max-width: 575.98px) {
+  .hero-section {
+    min-height: 100svh;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 3.25rem) !important;
+  }
+
+  .action-hero-title {
+    font-size: clamp(2.25rem, 9vw, 3.25rem) !important;
+  }
+}
+
+
+/* ── Full-width video band ──────────────────────────────────────
+   Cap height so it doesn't dominate the viewport on mobile        */
+@media (max-width: 767.98px) {
+  .video-band {
+    max-height: 40vh;
+  }
+}
+
+
+/* ── Package cards ──────────────────────────────────────────────
+   Full-width single column on xs, 2-col on sm, 3-col on lg.
+   Bootstrap col-12 col-sm-6 col-lg-4 handles this — just ensure
+   card padding is comfortable at narrow widths.                   */
+@media (max-width: 575.98px) {
+  .package-card {
+    padding: 1.25rem !important;
+  }
+}
+
+
+/* ── Section titles ─────────────────────────────────────────────
+   Prevent orphaned single words on narrow screens                 */
+@media (max-width: 575.98px) {
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2rem) !important;
+  }
+}
+
+
+
+
+/* ================================================================
+   ABOUT PAGE — MOBILE RESPONSIVE ADDITIONS
+   Append to your global CSS file.
+   ================================================================ */
+
+
+/* ── Hero: stack text above image on mobile ─────────────────────
+   Desktop keeps the existing .abt-hero-image position:absolute
+   right:10% behaviour via the existing rule.                      */
+.abt-hero-wrap {
+  position: relative;
+}
+
+@media (max-width: 767.98px) {
+  .abt-hero-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .abt-hero-text {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Override the desktop absolute positioning */
+  .abt-hero-image {
+    position: static !important;
+    width: 100% !important;
+    z-index: 1;
+  }
+
+  .abt-hero-image img {
+    width: 100%;
+    height: auto;
+    max-height: 340px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 0.75rem;
+  }
+}
+
+/* Desktop: restore absolute positioning for the image */
+@media (min-width: 768px) {
+  .abt-hero-wrap {
+    display: block; /* let existing .pages-hero-section flex do the work */
+  }
+}
+
+
+/* ── Stats row: keep "4+" large but proportional ───────────────  */
+@media (max-width: 575.98px) {
+  .abt-stat-number {
+    font-size: clamp(2rem, 10vw, 3rem) !important;
+  }
+}
+
+
+/* ── Gallery strip: consistent tile sizing ──────────────────────
+   .gallery-scroll-tile is already defined in your CSS.
+   This just ensures aspect ratio on the media-card holds.         */
+@media (max-width: 767.98px) {
+  .gallery-scroll-tile .media-card {
+    height: auto !important;
+  }
+}
+
+
+/* ── Reason cards: full-width on xs ────────────────────────────  */
+@media (max-width: 575.98px) {
+  .reason-card {
+    height: auto !important;
+    min-height: 3.5rem;
+  }
+}
+
+.tin_line{
+  display: none;
+}
+.faded_logo{
+  display: none;
+  width: 100%;
+}
+
+/* ── Expertise cards: full-width stack on mobile ────────────────
+   col-12 col-md-4 handles this in Bootstrap — just ensure the
+   backdrop blur card doesn't overflow on narrow screens.          */
+@media (max-width: 767.98px) {
+  .page-sect {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  .tin_line{
+    margin-top: 40px;
+    display: block;
+    height: 20vh;
+    width: 1px;
+    background-color: #C5921F;
+  }
+  .faded_logo{
+    width: 100%;
+    display: block;
+  }
+  .faded_logo img{
+    width: 20%;
+    position: fixed;
+    bottom: 25%;
+    right: 0 !important;
+  }
+}
+
+
+/* ── Hero title scale on very small screens ─────────────────────  */
+@media (max-width: 575.98px) {
+  .hero-title {
+    font-size: clamp(2.4rem, 9.5vw, 3.25rem) !important;
+  }
+}
+
+
+
+
+
+
+@media (max-width: 767.98px) {
+  .reason-card {
+    height: auto !important;
+    min-height: 7rem;
+    font-size: 0.8rem !important;
+  }
+  .chageFont{
+    font-size: 1.7rem !important;
   }
 }
