@@ -1,4 +1,4 @@
-import { ArrowRight, Music2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import Footbar from "@/components/Footbar";
 import heroStudio from "@/assets/studio-hero.jpg";
@@ -48,41 +48,51 @@ const services: Service[] = [
 
 const ServiceSection = ({ service }: { service: Service }) => (
   <section className="service-section">
-    <div className="d-flex g-5 align-items-center justify-content-between flex-md-row flex-column">
-      <div className="serv-box position-relative z-1">
-        <h2 className="service-title-overlap mb-4">{service.title}</h2>
-        <div className="service-copy">
-          <p className="small text-soft mb-4" style={{ maxWidth: "48rem" }}>{service.eyebrow}</p>
-          <p className="small text-muted-custom mb-4" style={{ maxWidth: "48rem", lineHeight: 1.8 }}>{service.body}</p>
-          <h3 className="font-display fs-3 mb-3">What you get:</h3>
-          <ul className="dash-list mb-4">{service.points.map((point) => <li key={point}><span>{point}</span></li>)}</ul>
-          <p className="font-display fs-3 lh-sm text-soft mb-0" style={{ maxWidth: "36rem" }}>{service.closing}</p>
+    {/* Stack on mobile/tablet, side-by-side on lg+ */}
+    <div className="container">
+      <div className="row g-4 align-items-center flex-column-reverse flex-lg-row">
+
+        {/* Text */}
+        <div className="col-12 col-lg-7">
+          <div className="serv-box position-relative z-1">
+            <h2 className="service-title-overlap mb-4">{service.title}</h2>
+            <div className="service-copy">
+              <p className="small text-soft mb-4" style={{ maxWidth: "48rem" }}>{service.eyebrow}</p>
+              <p className="small text-muted-custom mb-4" style={{ maxWidth: "48rem", lineHeight: 1.8 }}>{service.body}</p>
+              <h3 className="font-display fs-5 mb-3">What you get:</h3>
+              <ul className="dash-list mb-4">
+                {service.points.map((point) => <li key={point}><span>{point}</span></li>)}
+              </ul>
+              <p className="font-display lh-sm text-soft mb-0" style={{ maxWidth: "36rem", fontSize: "clamp(1rem, 2.5vw, 1.25rem)" }}>
+                {service.closing}
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="col-md-5">
-        <div className="service-image">
-          <img src={service.image} alt={service.imageAlt} loading="lazy" width={900} height={840} className="image-fill" />
+
+        {/* Image */}
+        <div className="col-12 col-lg-5">
+          <div className="service-image">
+            <img src={service.image} alt={service.imageAlt} loading="lazy" width={900} height={840} className="image-fill" />
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 );
 
-
 const Services = () => {
   return (
     <div className="app-shell">
       <SiteNav />
-
       <main>
 
-
-
+        {/* ── Hero ── */}
         <section className="hero-pad page-section-sm">
           <div className="container pages-hero-section">
             <div className="pages-hero-content">
               <h1 className="hero-title mb-3">Create Better,<br />Sound Better.</h1>
-              {/* <p className="eyebrow-script mb-2">/</p> */}
               <p className="text-muted-custom" style={{ maxWidth: "28rem" }}>
                 End-to-end services built to help you produce, perform, and grow with confidence.
               </p>
@@ -93,24 +103,23 @@ const Services = () => {
           </div>
         </section>
 
+        <div className="pt-4">
+          {services.map((service) => <ServiceSection key={service.title} service={service} />)}
+        </div>
 
-        <div className="pt-5">{services.map((service) => <ServiceSection key={service.title} service={service} />)}</div>
-
-
+        {/* ── CTA ── */}
         <section className="wave-bg page-section overflow-hidden">
           <div className="container">
             <p className="eyebrow-script">Ready to create your signature sound?</p>
-            <h2 className="section-title mb-4" style={{ maxWidth: "48rem" }}>Book your session today and experience the Signature Sound difference.</h2>
+            <h2 className="section-title mb-4" style={{ maxWidth: "48rem" }}>
+              Book your session today and experience the Signature Sound difference.
+            </h2>
             <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
           </div>
         </section>
 
         <Footbar />
-
-
       </main>
-
-
     </div>
   );
 };
