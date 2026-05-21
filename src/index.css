@@ -912,6 +912,9 @@ select.custom-input {
     min-height: auto;
     aspect-ratio: 1.08 / 1;
   }
+  .app-shell {
+    padding: 0 2% !important;
+  }
 }
 
 
@@ -1031,6 +1034,7 @@ select.custom-input {
   .serv-box {
     left: 0 !important;
     width: 100% !important;
+    padding: 0 2%;
   }
 }
 
@@ -1451,5 +1455,123 @@ select.custom-input {
   }
   .chageFont{
     font-size: 1.7rem !important;
+  }
+}
+
+
+
+
+/* ── Footer — mobile only ── */
+@media (max-width: 767.98px) {
+
+  /* Strip newsletter left offset */
+  .newsletter-div {
+    position: static !important;
+    left: unset !important;
+  }
+
+  /* Phone + email block: centred, border bottom */
+  .footer-contact-row {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .footer-phone {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+  }
+
+  /* 2-col links | address with vertical divider */
+  .footer-col-links {
+    padding: 0 1.25rem;
+    border-right: 1px solid hsl(var(--border));
+  }
+
+  .footer-col-address {
+    padding: 0 1.25rem;
+  }
+
+  /* Strip desktop offsets from footer-bottom */
+  .footer-bottom {
+    position: static !important;
+    left: unset !important;
+    padding-left: 1rem;
+  }
+
+  .footer-bottom .small {
+    position: static !important;
+    left: unset !important;
+    bottom: unset !important;
+    padding-left: 0;
+  }
+}
+
+
+
+
+
+@media (max-width: 767.98px) {
+
+  .magic-section {
+    position: relative;
+    flex-direction: row !important;
+    align-items: flex-end;
+    min-height: 400px;
+    gap: 0;
+    overflow: hidden;
+    padding-bottom: 2rem;
+    margin-top: -10% !important;
+  }
+
+  /* Text: left side, full z above image */
+  .magic-content {
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    text-align: left !important;
+    padding-right: 1rem;
+  }
+
+  .magic-content .btn-studio {
+    margin: 0 !important;
+  }
+
+  /* Image: right 40%, clipped, faded on left edge */
+  .magic-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 42%;
+    z-index: 1;
+    flex: unset !important;
+  }
+
+  .magic-image .mediaCard {
+    height: 100% !important;
+    aspect-ratio: unset !important;
+    border-radius: 0 !important;
+  }
+
+  /* Strong left-to-right fade so text stays readable */
+  .magic-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to right,
+      hsl(var(--background)) 0%,
+      hsl(var(--background) / 0.85) 30%,
+      hsl(var(--background) / 0.2) 70%,
+      transparent 100%
+    );
+  }
+
+  /* Scale down title so it doesn't push into the image */
+  .magic-section .action-hero-title {
+    font-size: clamp(1.9rem, 7.5vw, 2.5rem) !important;
+    line-height: 1.1;
   }
 }

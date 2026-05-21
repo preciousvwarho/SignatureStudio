@@ -181,6 +181,7 @@ const Index = () => {
       {/* ── Come create magic ── */}
       <section className="page-section container">
         <div className="magic-section">
+
           {/* Text side */}
           <div className="magic-content">
             <h2 className="action-hero-title mb-4">
@@ -208,6 +209,7 @@ const Index = () => {
               />
             </div>
           </div>
+
         </div>
       </section>
 
