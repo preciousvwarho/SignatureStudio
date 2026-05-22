@@ -50,7 +50,7 @@ const Index = () => {
 
       {/* ── Video band ── */}
       <section>
-        <video className="w-100 d-block" style={{ maxHeight: "60vh", objectFit: "cover" }} autoPlay loop muted playsInline>
+        <video className="w-100 d-block" style={{ maxHeight: "100vh", objectFit: "cover" }} autoPlay loop muted playsInline>
           <source src={homScreen} type="video/mp4" />
         </video>
       </section>

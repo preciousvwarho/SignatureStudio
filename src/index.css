@@ -148,8 +148,20 @@ button, input { font: inherit; }
 .footer-wordmark-wrapper { width: 100%; overflow: hidden; height: 16vw; display: flex; align-items: flex-start; }
 .footer-wordmark { color: #9E9E9E; font-family: var(--font-impact); font-size: 20vw; text-align: center; white-space: nowrap; user-select: none; }
 
-/* ── Desktop offset sections ── */
-.action-section { position: relative; left: 20rem; top: 8rem; }
+/* ================================================================
+   DESKTOP-ONLY OFFSETS
+   Scoped to ≥992px so they never leak into responsive breakpoints.
+   Using margin-left instead of position:relative + left so resets
+   are simple margin-left:0 — no !important needed.
+   ================================================================ */
+@media (min-width: 992px) {
+  .action-section  { margin-left: 20rem; margin-top: 8rem; }
+  .newsletter-div  { margin-left: 12rem; }
+  .serv-box        { margin-left: 10%; width: 90%; }
+  .footer-bottom   { margin-left: 5rem; }
+  .footer-bottom .small { margin-left: 18%; }
+  .containStudio   { margin-left: 7rem; }
+}
 
 /* ── Media cards ── */
 .mediaCard { border-radius: 1rem; height: 70vh; box-shadow: var(--shadow-card); }
@@ -175,7 +187,6 @@ button, input { font: inherit; }
 }
 
 /* ── Studio section ── */
-.containStudio { width: auto; margin-left: 7rem; }
 .studio-parent {
   display: flex; width: 100%;
   overflow-x: auto; overflow-y: hidden;
@@ -187,7 +198,8 @@ button, input { font: inherit; }
 
 /* ── Cards ── */
 .reason-card {
-  height: 14vh !important; font-size: 1.05rem;
+  min-height: 14vh;
+  font-size: 1.05rem;
   display: flex; justify-content: center; align-items: center;
 }
 .ex-package-card {
@@ -224,7 +236,6 @@ button, input { font: inherit; }
 .dash-list li::before { content: "—"; color: hsl(var(--primary)); }
 
 /* ── Newsletter ── */
-.newsletter-div { position: relative; left: 12rem; }
 .newsletter-form {
   display: flex; align-items: center; gap: 0.5rem;
   max-width: 52rem; padding: 0.5rem 0.75rem;
@@ -237,8 +248,7 @@ button, input { font: inherit; }
 .site-footer { background-color: #111111; padding-top: 4rem; }
 .footer-grid { padding-bottom: 2.5rem; border-bottom: 1px solid hsl(var(--border)); }
 .footer-links { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; color: hsl(var(--muted-foreground)); font-size: 0.875rem; }
-.footer-bottom { position: relative; left: 5rem; gap: 0.75rem; padding-top: 2.5rem; color: hsl(var(--muted-foreground)); }
-.footer-bottom .small { position: relative; bottom: -6rem; left: 18%; font-size: 0.95rem; }
+.footer-bottom { gap: 0.75rem; padding-top: 2.5rem; color: hsl(var(--muted-foreground)); }
 .footer-address { line-height: 1.5rem !important; }
 
 /* ── Pages hero ── */
@@ -247,8 +257,13 @@ button, input { font: inherit; }
   align-items: center; justify-content: center;
 }
 .pages-hero-section > div { flex: 1 1 280px; }
-.abt-hero-image { position: absolute; top: 0; right: 10%; z-index: 10; }
 .pages-hero-content { position: relative; z-index: 20; max-width: 72rem; }
+
+/*
+  .abt-hero-image — single source of truth.
+  Desktop: absolute overlay. Tablet/mobile override below.
+*/
+.abt-hero-image { position: absolute; top: 0; right: 10%; z-index: 10; }
 
 /* ── Bracket ── */
 .bracket { position: relative; padding-left: 2rem; }
@@ -288,7 +303,6 @@ button, input { font: inherit; }
 }
 
 /* ── Services ── */
-.serv-box { position: relative; left: 10%; width: 100%; }
 .services-hero-image { position: relative; margin-top: -4rem; aspect-ratio: 4 / 3; overflow: hidden; }
 .services-hero-image::after {
   content: ""; position: absolute; inset: 0 auto 0 0; width: 34%;
@@ -343,12 +357,12 @@ select.custom-input {
 .radio-item { display: flex; align-items: center; gap: 8px; color: #ccc; cursor: pointer; }
 .radio-item input { accent-color: #C5921F; }
 
-/* ── Magic section base ── */
+/* ── Magic section — base (shared across all breakpoints ≤991px) ── */
 .magic-section { display: flex; gap: 3rem; align-items: center; }
 .magic-image   { flex: 0 0 45%; }
 .magic-content { flex: 1; }
 
-/* ── About hero wrap base ── */
+/* ── About hero wrap ── */
 .abt-hero-wrap { position: relative; }
 
 /* ── Decorative ── */
@@ -358,14 +372,18 @@ select.custom-input {
 /* ── Gallery scroll tile ── */
 .gallery-scroll-tile { flex: 0 0 calc(33.333% - 1.4rem); min-width: 220px; }
 
+/* ── Contact meta row ── */
+.contact-meta-row { display: flex; gap: 3rem; flex-wrap: wrap; }
+
 
 /* ================================================================
-   DESKTOP (min-width: 992px) — restore large-screen only styles
+   DESKTOP (min-width: 992px) — large-screen-only additions
    ================================================================ */
 @media (min-width: 992px) {
-  .hero-image-band  { height: 520px; }
+  .hero-image-band     { height: 520px; }
   .service-title-overlap { width: 130%; }
-  .service-copy { padding-top: .5rem; }
+  .service-copy        { padding-top: .5rem; }
+  .services-hero-image { margin-top: -9rem; height: 560px; aspect-ratio: auto; }
 }
 
 
@@ -373,90 +391,141 @@ select.custom-input {
    DESKTOP NAV — hide mobile elements above 768px
    ================================================================ */
 @media (min-width: 768px) {
-  .mobile-overlay  { display: none !important; }
-  .mobile-hamburger{ display: none !important; }
-  .abt-hero-wrap   { display: block; }
+  .mobile-overlay   { display: none !important; }
+  .mobile-hamburger { display: none !important; }
+  .abt-hero-wrap    { display: block; }
+}
 
-  .services-hero-image {
-    margin-top: -9rem; height: 560px; aspect-ratio: auto;
+
+/* ================================================================
+   SHARED: Tablet + Mobile (max-width: 991.98px)
+   Consolidate rules that are identical at both breakpoints here.
+   ================================================================ */
+@media (max-width: 991.98px) {
+
+  /* Feature cards — same reset at both breakpoints */
+  .feature-card           { margin-top: 2rem; }
+  .feature-card-highlight { transform: none; min-height: auto; }
+
+  /* Service title */
+  .service-title-overlap { width: 100%; }
+
+  /* Magic section — overlay layout (content left, image right) */
+  .magic-section {
+    position: relative;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0;
+    overflow: hidden;
+    padding-bottom: 2rem;
   }
+  .magic-image {
+    position: absolute; right: 0; top: 0; bottom: 0;
+    flex: unset;
+    z-index: 1;
+  }
+  .magic-image .mediaCard {
+    height: 100%;
+    aspect-ratio: unset;
+    border-radius: 0;
+    max-height: unset;
+  }
+  .magic-image::before {
+    content: ""; position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(
+      to right,
+      hsl(var(--background)) 0%,
+      hsl(var(--background) / 0.85) 30%,
+      hsl(var(--background) / 0.2) 70%,
+      transparent 100%
+    );
+  }
+  .magic-content {
+    position: relative; z-index: 2;
+    text-align: left;
+    padding-right: 0.75rem;
+  }
+  .magic-content .btn-studio { margin: 0; }
+
+  /* Pages hero image: flow naturally, no absolute */
+  .abt-hero-image {
+    position: static;
+    width: 100%;
+    top: unset; right: unset;
+  }
+  .abt-hero-image img {
+    width: 100%; height: auto;
+    object-fit: cover;
+    border-radius: 0.75rem;
+  }
+
+  /* Services hero */
+  .services-hero-image { margin-top: -5rem; }
 }
 
 
 /* ================================================================
    TABLET  768px – 991px
+   Only rules that DIFFER from the shared block above.
    ================================================================ */
 @media (min-width: 768px) and (max-width: 991.98px) {
 
-  /* Strip large desktop positional offsets */
-  .newsletter-div  { position: static !important; left: unset !important; }
-  .action-section  { position: static !important; left: unset !important; top: unset !important; }
-  .serv-box        { left: 0 !important; width: 100% !important; }
-  .footer-bottom   { position: static !important; left: unset !important; }
-  .footer-bottom .small { position: static !important; left: unset !important; bottom: unset !important; }
+  /* Studio */
+  .containStudio { padding-left: 1rem; padding-right: 1rem; }
+  .studio-parent { padding-left: 1rem; padding-right: 1rem; }
+  .studioCol     { flex: 0 0 78%; }
 
-  .containStudio   { margin-left: 0 !important; padding-left: 1rem; padding-right: 1rem; }
-  .studio-parent   { padding-left: 1rem; padding-right: 1rem; }
-  .studioCol       { flex: 0 0 78% !important; }
-
-  /* Feature cards */
-  .feature-card    { margin-top: 2rem !important; }
-  .feature-card-highlight { transform: none !important; }
-
-  /* Typography scale */
-  .hero-title       { font-size: clamp(2.4rem, 6vw, 4rem) !important; }
-  .section-title    { font-size: clamp(1.5rem, 3vw, 2rem) !important; }
-  .action-hero-title{ font-size: clamp(2rem, 4.5vw, 3rem) !important; }
-  .service-title-overlap { font-size: clamp(1.8rem, 4vw, 3rem) !important; width: 100% !important; }
+  /* Typography */
+  .hero-title        { font-size: clamp(2.4rem, 6vw, 4rem); }
+  .section-title     { font-size: clamp(1.5rem, 3vw, 2rem); }
+  .action-hero-title { font-size: clamp(2rem, 4.5vw, 3rem); }
+  .service-title-overlap { font-size: clamp(1.8rem, 4vw, 3rem); }
 
   /* Buttons */
   .btn-studio {
-    min-height: 2.4rem !important;
-    padding: 0.6rem 1.2rem !important;
-    font-size: 0.875rem !important;
+    min-height: 2.4rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
   }
 
-  /* Media card cap */
-  .mediaCard { height: 50vw !important; min-height: 260px; max-height: 400px; }
+  /* MediaCard — capped height, not fighting magic-section */
+  .mediaCard { height: 50vw; min-height: 260px; max-height: 400px; }
 
-  /* Pages hero: prevent image absolute overlapping text */
-  .pages-hero-section { position: relative; padding-top: 1rem; }
+  /* Magic section tablet-specific sizing */
+  .magic-section        { min-height: 340px; }
+  .magic-content        { width: 62%; }
+  .magic-image          { width: 46%; }
+  .magic-section .action-hero-title { font-size: clamp(1.8rem, 3.8vw, 2.8rem); }
+
+  /* Pages hero: side-by-side row */
+  .pages-hero-section { flex-wrap: nowrap; align-items: flex-start; }
   .abt-hero-image {
-    position: static !important;
-    width: 100%; max-width: 340px;
+    max-width: 340px;
     margin-left: auto;
   }
-  .abt-hero-image img { width: 100%; height: auto; max-height: 320px; object-fit: cover; border-radius: 0.75rem; }
+  .abt-hero-image img { max-height: 320px; }
 
-  /* Magic section */
-  .magic-section {
-    position: relative; flex-direction: row !important;
-    align-items: flex-end; min-height: 340px;
-    gap: 0; overflow: hidden; padding-bottom: 2.5rem;
-  }
-  .magic-content { position: relative; z-index: 2; width: 62%; text-align: left !important; }
-  .magic-content .btn-studio { margin: 0 !important; }
-  .magic-image {
-    position: absolute; right: 0; top: 0; bottom: 0;
-    width: 46%; z-index: 1; flex: unset !important;
-  }
-  .magic-image .mediaCard { height: 100% !important; aspect-ratio: unset !important; border-radius: 0 !important; max-height: unset !important; }
-  .magic-image::before {
-    content: ""; position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background) / 0.85) 30%, hsl(var(--background) / 0.2) 70%, transparent 100%);
-  }
-  .magic-section .action-hero-title { font-size: clamp(1.8rem, 3.8vw, 2.8rem) !important; }
-
-  /* Service section: stack on tablet */
+  /* Service */
   .service-image { min-height: 260px; aspect-ratio: 4 / 3; }
 
   /* Form */
   .form-wrapper { margin-top: 2rem; }
+
+  /* Services hero */
+  .services-hero-image { height: 420px; aspect-ratio: auto; }
+  .font-display{ font-size: 20px; }
+  .hero-section { height: 75vh; }
+  .service-image img{ height: 70%;}
+  .media-card {
+    height: 30vh;
+}
+  /* .position-absolute{ position: absolute; bottom: 30% !important;} */
 }
 
 
 /* ================================================================
    MOBILE  max-width: 767px
+   Only rules that DIFFER from the shared block above.
    ================================================================ */
 @media (max-width: 767.98px) {
 
@@ -467,96 +536,71 @@ select.custom-input {
   /* ── Spacing ── */
   .page-section-sm { padding-top: 2.5rem; padding-bottom: 2.5rem; }
   .page-section    { padding-top: 3rem;   padding-bottom: 3rem; }
-  .page-sect       { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .page-sect       { padding-top: 3rem;   padding-bottom: 3rem; }
   .hero-pad        { padding-top: 6rem; }
 
-  /* ── App shell: small side padding ── */
-  .app-shell { padding: 0 1% !important; }
+  /* ── App shell ── */
+  .app-shell { padding: 0 1%; }
 
   /* ── Buttons ── */
   .btn-studio {
-    min-height: 2.1rem !important;
-    padding: 0.5rem 1rem !important;
-    font-size: 0.8rem !important;
-    gap: 0.35rem !important;
+    min-height: 2.1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    gap: 0.35rem;
   }
 
+
+
+  /* .position-absolute{ position: absolute; bottom: 20% !important;} */
   /* ── Typography ── */
-  .hero-title        { font-size: clamp(2rem, 9vw, 2.8rem) !important; }
-  .section-title     { font-size: clamp(1.35rem, 5.5vw, 1.8rem) !important; }
-  .action-hero-title { font-size: clamp(1.75rem, 8vw, 2.4rem) !important; }
+  .hero-title        { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .section-title     { font-size: clamp(1.35rem, 5.5vw, 1.8rem); }
+  .action-hero-title { font-size: clamp(1.75rem, 8vw, 2.4rem); }
   .eyebrow-script    { font-size: clamp(1rem, 4vw, 1.4rem); }
-  .service-title-overlap { font-size: clamp(1.6rem, 6.5vw, 2.4rem) !important; width: 100% !important; }
+  .service-title-overlap { font-size: clamp(1.6rem, 6.5vw, 2.4rem); }
 
   /* ── Hero section ── */
-  .hero-section { min-height: 100svh; }
-
-  /* ── Feature cards ── */
-  .feature-card           { margin-top: 0 !important; min-height: auto !important; }
-  .feature-card-highlight { transform: none !important; min-height: auto !important; }
+  .hero-section { height: 75vh; }
 
   /* ── Studio / gallery ── */
-  .containStudio { margin-left: 0 !important; padding-left: 0.75rem; padding-right: 0.75rem; }
+  .containStudio { padding-left: 0.75rem; padding-right: 0.75rem; }
   .studio-parent { padding-left: 0.75rem; padding-right: 0.75rem; }
-  .studioCol     { flex: 0 0 86% !important; }
+  .studioCol     { flex: 0 0 86%; }
   .gallery-scroll-tile { flex: 0 0 70vw; min-width: 0; }
-  .gallery-scroll-tile .media-card { height: auto !important; }
+  .gallery-scroll-tile .media-card { height: auto; }
 
   /* ── Cards ── */
-  .package-card { padding: 1rem !important; }
-  .reason-card  { height: auto !important; min-height: 6rem; font-size: 0.78rem !important; }
+  .package-card { padding: 1rem; }
+  .reason-card  { min-height: 6rem; font-size: 0.78rem; }
 
-  /* ── MediaCard ── */
-  .mediaCard { height: 48vw !important; min-height: 220px; max-height: 380px; }
+  /* ── MediaCard — mobile cap ── */
+  .mediaCard { height: 48vw; min-height: 220px; max-height: 380px; }
 
-  /* ── Magic section ── */
-  .magic-section {
-    position: relative; flex-direction: row !important;
-    align-items: flex-end; min-height: 320px;
-    gap: 0; overflow: hidden; padding-bottom: 1.75rem;
-  }
-  .magic-content { position: relative; z-index: 2; width: 68%; text-align: left !important; padding-right: 0.75rem; }
-  .magic-content .btn-studio { margin: 0 !important; }
-  .magic-image {
-    position: absolute; right: 0; top: 0; bottom: 0;
-    width: 44%; z-index: 1; flex: unset !important;
-  }
-  .magic-image .mediaCard { height: 100% !important; aspect-ratio: unset !important; border-radius: 0 !important; max-height: unset !important; }
-  .magic-image::before {
-    content: ""; position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background) / 0.85) 30%, hsl(var(--background) / 0.2) 70%, transparent 100%);
-  }
-  .magic-section .action-hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; line-height: 1.1; }
+  .media-card{ height: 30vh; }
 
-  /* ── Desktop offset strips ── */
-  .action-section  { position: static !important; left: unset !important; top: unset !important; }
-  .newsletter-div  { position: static !important; left: unset !important; }
-  .serv-box        { left: 0 !important; width: 100% !important; padding: 0; }
+  /* ── Magic section mobile-specific sizing ── */
+  .magic-section        { min-height: 320px; padding-bottom: 1.75rem; }
+  .magic-content        { width: 68%; }
+  .magic-image          { width: 44%; }
+  .magic-section .action-hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem); line-height: 1.1; }
 
   /* ── Services ── */
   .service-section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
   .service-image   { min-height: auto; aspect-ratio: 4 / 3; width: 100%; }
   .bracket         { padding-left: 1.25rem; }
 
-  /* ── Pages hero: stack image below text ── */
+  /* ── Pages hero: stack vertically ── */
   .pages-hero-section { flex-direction: column; gap: 1.5rem; }
   .pages-hero-section > div { flex: 1 1 100%; }
-  .abt-hero-image {
-    position: static !important; width: 100% !important; z-index: 1; margin-top: 0;
-  }
-  .abt-hero-image img {
-    width: 100%; height: auto; max-height: 280px;
-    object-fit: cover; object-position: center top; border-radius: 0.75rem;
-  }
+  .abt-hero-image img { max-height: 280px; object-position: center top; }
 
   /* ── Footer ── */
-  .footer-grid     { text-align: left; }
-  .footer-address  { text-align: left !important; }
-  .footer-bottom   { position: static !important; left: unset !important; padding-left: 0.75rem; }
-  .footer-bottom .small { position: static !important; left: unset !important; bottom: unset !important; padding-left: 0; }
+  .footer-grid      { text-align: left; }
+  .footer-address   { text-align: left; }
   .footer-contact-row { text-align: center; padding-bottom: 1.25rem; margin-bottom: 1.25rem; border-bottom: 1px solid hsl(var(--border)); }
-  .footer-phone    { font-size: clamp(1rem, 4.5vw, 1.3rem); }
-  .footer-col-links{ padding: 0 1rem; border-right: 1px solid hsl(var(--border)); }
+  .footer-phone     { font-size: clamp(1rem, 4.5vw, 1.3rem); }
+  .footer-col-links  { padding: 0 1rem; border-right: 1px solid hsl(var(--border)); }
   .footer-col-address{ padding: 0 1rem; }
 
   /* ── About hero ── */
@@ -564,7 +608,7 @@ select.custom-input {
   .abt-hero-text { position: relative; z-index: 2; }
 
   /* ── Stats ── */
-  .chageFont { font-size: clamp(1.5rem, 8vw, 2.2rem) !important; }
+  .chageFont { font-size: clamp(1.5rem, 8vw, 2.2rem); }
 
   /* ── Form ── */
   .form-wrapper { margin-top: 1.5rem; }
@@ -574,7 +618,14 @@ select.custom-input {
   /* ── Decorative ── */
   .tin_line { margin-top: 40px; display: block; height: 20vh; width: 1px; background-color: #C5921F; }
   .faded_logo { width: 100%; display: block; }
-  .faded_logo img { width: 20%; position: fixed; bottom: 25%; right: 0 !important; }
+  .faded_logo img { width: 20%; position: fixed; bottom: 25%; right: 0; }
+
+  /* ── Nav logo ── */
+  .site-nav a[aria-label="Signature Sound Studio home"] img { width: 70px; }
+
+  /* ── Contact ── */
+  .contact-meta-row { gap: 1.5rem; }
+  .contact-meta-row h4 { font-size: 0.9rem; }
 }
 
 
@@ -614,115 +665,61 @@ select.custom-input {
 
 /* ================================================================
    CONTACT PAGE — scoped under .contact-page-hero
-   Desktop is untouched (uses existing hero-pad + abt-hero-image rules)
    ================================================================ */
 
-.contact-meta-row {
-  display: flex;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-
-/* ── TABLET: proper flex row, no absolute positioning ── */
+/* ── TABLET ── */
 @media (min-width: 768px) and (max-width: 991.98px) {
 
-  .contact-page-hero {
-    padding-top: 6rem;
-  }
+  .contact-page-hero { padding-top: 6rem; }
 
-  /* Switch to a clean flex row */
   .contact-page-hero .pages-hero-section {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    gap: 1.5rem !important;
-    flex-wrap: nowrap !important;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
   }
-
-  /* Text takes the left 55% */
   .contact-page-hero .pages-hero-content {
-    flex: 0 0 55% !important;
-    max-width: 55% !important;
-    position: relative !important;
-    z-index: 2 !important;
+    flex: 0 0 55%;
+    max-width: 55%;
   }
-
-  /* Image takes the right 42%, flows naturally — no absolute */
   .contact-page-hero .abt-hero-image {
-    position: relative !important;   /* override the absolute */
-    top: unset !important;
-    right: unset !important;
-    flex: 0 0 42% !important;
-    max-width: 42% !important;
-    margin-left: 0 !important;
-    height: auto !important;
-    align-self: stretch !important;
+    flex: 0 0 42%;
+    max-width: 42%;
+    align-self: stretch;
   }
-
   .contact-page-hero .abt-hero-image img {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: none !important;
-    object-fit: cover !important;
-    border-radius: 0.5rem !important;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    border-radius: 0.5rem;
   }
-
-  /* Scale text down so it fits the 55% column */
-  .contact-page-hero .hero-title {
-    font-size: clamp(1.6rem, 3.8vw, 2.4rem) !important;
-  }
-  .contact-page-hero h4 {
-    font-size: 0.9rem !important;
-  }
-  .contact-page-hero p.text-muted-custom {
-    font-size: 0.8rem !important;
-    max-width: 100% !important;
-  }
-  .contact-meta-row {
-    gap: 1.25rem !important;
-  }
+  .contact-page-hero .hero-title          { font-size: clamp(1.6rem, 3.8vw, 2.4rem); }
+  .contact-page-hero h4                   { font-size: 0.9rem; }
+  .contact-page-hero p.text-muted-custom  { font-size: 0.8rem; max-width: 100%; }
+  .contact-meta-row                       { gap: 1.25rem; }
 }
 
-/* ── MOBILE: stack text then image ── */
+/* ── MOBILE ── */
 @media (max-width: 767.98px) {
 
-  .contact-page-hero {
-    padding-top: 5rem;
-  }
+  .contact-page-hero { padding-top: 5rem; }
 
   .contact-page-hero .pages-hero-section {
     flex-direction: column;
     gap: 1.5rem;
   }
-
   .contact-page-hero .abt-hero-image {
-    position: static !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
+    max-width: 100%;
+    margin-left: 0;
   }
-
   .contact-page-hero .abt-hero-image img {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 260px !important;
-    object-fit: cover !important;
+    width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: cover;
     object-position: center top;
-    border-radius: 0.75rem !important;
+    border-radius: 0.75rem;
   }
-
-  .contact-page-hero .hero-title {
-    font-size: clamp(1.9rem, 8vw, 2.4rem) !important;
-  }
-
-  .contact-meta-row { gap: 1.5rem; }
-  .contact-meta-row h4 { font-size: 0.9rem; }
-}
-
-/* ── Nav logo: smaller on mobile ── */
-@media (max-width: 767.98px) {
-  .site-nav a[aria-label="Signature Sound Studio home"] img {
-    width: 70px !important;
-  }
+  .contact-page-hero .hero-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
 }
