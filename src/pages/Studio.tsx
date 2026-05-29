@@ -9,6 +9,7 @@ import keys from "@/assets/studio-keys2.jpg";
 import podMics from "@/assets/podcast-mics.jpg";
 import podDesk from "@/assets/podcast-desk.jpg";
 import podBooth from "@/assets/podcast-booth.jpg";
+import { Link } from 'react-router-dom';
 
 const musicGallery = [drums, lounge, keys, podMics, podDesk, podBooth];
 const podcastGallery = [podMics, podDesk, podBooth, podMics, podDesk, podBooth];
@@ -98,7 +99,7 @@ const StudioBlock = ({ title, intro, description, tags, whatYouGet, galleryLabel
 
       <div className="container mt-5 pt-4">
         <h3 className="section-title mb-4" style={{ maxWidth: "48rem" }}>{callout}</h3>
-        <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+        <Link to="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></Link>
       </div>
     </section>
   );

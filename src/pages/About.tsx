@@ -7,6 +7,7 @@ import galleryLounge from "@/assets/gallery-lounge.jpg";
 import galleryKeys from "@/assets/gallery-keys.jpg";
 import headphonesWoman from "@/assets/headphones-woman.png";
 import expertiseBg from "@/assets/expertise-bg.jpg";
+import { Link } from 'react-router-dom';
 
 const reasons = [
   "Modern, fully-equipped recording environment",
@@ -134,7 +135,7 @@ const About = () => {
           <h2 className="section-title mb-4" style={{ maxWidth: "48rem" }}>
             Book your session today and experience the Signature Sound difference.
           </h2>
-          <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+          <Link to="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></Link>
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import heroStudio from "@/assets/studio-hero.jpg";
 import productionMics from "@/assets/podcast-mics.jpg";
 import eventsLounge from "@/assets/gallery-lounge.jpg";
 import trainingDrums from "@/assets/studio-drums.jpg";
+import { Link } from 'react-router-dom';
 
 type Service = {
   title: string;
@@ -114,7 +115,7 @@ const Services = () => {
             <h2 className="section-title mb-4" style={{ maxWidth: "48rem" }}>
               Book your session today and experience the Signature Sound difference.
             </h2>
-            <a href="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></a>
+            <Link to="/booking" className="btn-studio btn-gold">Book Session <ArrowRight className="icon-sm" /></Link>
           </div>
         </section>
 
