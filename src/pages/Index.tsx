@@ -2,6 +2,7 @@ import { ArrowRight, Lightbulb, Mic, Users } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import Footbar from "@/components/Footbar";
 import musicImg from "@/assets/music-studio.jpg";
+import musicImg2 from "@/assets/music.jpg";
 import podcastImg from "@/assets/podcast-studio.jpg";
 import magicImg from "@/assets/magic-mic.jpg";
 import magicVideo from "@/assets/video/bestVideo.mp4";
@@ -90,10 +91,10 @@ const Index = () => {
         <h2 className="section-title mb-5">Our Studio Spaces</h2>
         <div className="studio-parent">
           {[
-            { img: musicImg, label: "Music Studio" },
+            { img: musicImg, label: "Rehearsal Studio" },
             { img: podcastImg, label: "Podcast Studio" },
-            { img: musicImg, label: "Music Studio" },
-            { img: musicImg, label: "Music Studio" },
+            { img: musicImg2, label: "Recording Studio" },
+            // { img: musicImg, label: "Music Studio" },
           ].map((space, i) => (
             <div className="studioCol" key={i}>
               <div className="media-card">

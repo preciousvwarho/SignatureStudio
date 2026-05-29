@@ -3,16 +3,21 @@ import { ArrowRight, ChevronLeft, ChevronRight, Minus, Plus } from "lucide-react
 import SiteNav from "@/components/SiteNav";
 import Footbar from "@/components/Footbar";
 import micHero from "@/assets/studio-mic-hero.jpg";
-import drums from "@/assets/studio-drums.jpg";
-import lounge from "@/assets/studio-lounge2.jpg";
-import keys from "@/assets/studio-keys2.jpg";
-import podMics from "@/assets/podcast-mics.jpg";
-import podDesk from "@/assets/podcast-desk.jpg";
-import podBooth from "@/assets/podcast-booth.jpg";
+import musicImg1 from "@/assets/music/1.jpg";
+import musicImg2 from "@/assets/music/2.jpg";
+import musicImg3 from "@/assets/music/3.jpg";
+import musicImg4 from "@/assets/music/4.jpg";
+import musicImg5 from "@/assets/music/5.jpg";
+import musicImg6 from "@/assets/music/8.jpg";
+import musicImg7 from "@/assets/music/9.jpg";
+
+import podMics from "@/assets/podcast/1.jpg";
+import podDesk from "@/assets/podcast/2.jpg";
+import podBooth from "@/assets/podcast/1.jpg";
 import { Link } from 'react-router-dom';
 
-const musicGallery = [drums, lounge, keys, podMics, podDesk, podBooth];
-const podcastGallery = [podMics, podDesk, podBooth, podMics, podDesk, podBooth];
+const musicGallery = [musicImg1, musicImg2, musicImg3, musicImg4, musicImg5, musicImg6, musicImg7];
+const podcastGallery = [podMics, podDesk, podBooth];
 
 const musicGets = ["Crystal-clear vocal recording", "Industry-standard microphones & equipment", "Professional mixing & mastering", "Comfortable, creative atmosphere", "Expert guidance from sound engineers"];
 const podcastGets = ["Clean, noise-free recording", "Multi-mic setup for group sessions", "Audio editing & post-production", "Easy, hassle-free recording experience", "Expert guidance from sound engineers"];
@@ -159,7 +164,7 @@ const Studio = () => {
         title="Music Studio"
         intro="Step into a space where creativity flows and sound comes alive."
         description="Our Music Studio is fully equipped for artists, producers, and creatives who are serious about quality. From vocal recording to full music production, we provide the tools and environment you need to create records that stand out."
-        tags={["Recording Studio", "Recording Studio", "Recording Studio"]}
+        tags={["Recording Studio", "Rehearsal Studio"]}
         whatYouGet={musicGets}
         galleryLabel="Music Studio Gallery"
         gallery={musicGallery}
