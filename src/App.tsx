@@ -10,6 +10,12 @@ import Services from "./pages/Services.tsx";
 import Booking from "./pages/Booking.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Dashboard from "./admin/pages/Dashboard.tsx";
+import Users from "./admin/pages/User.tsx";
+import Bookings from "./admin/pages/Booking.tsx";
+import Enquiry from "./admin/pages/Enquiries.tsx";
+import Login from "./admin/pages/Login.tsx";
+
 
 const queryClient = new QueryClient();
 
@@ -26,6 +32,12 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/user" element={<Users />} />
+          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/enquiries" element={<Enquiry />} />
+          <Route path="/login" element={<Login />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
