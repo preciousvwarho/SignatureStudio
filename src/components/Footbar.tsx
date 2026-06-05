@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 export const Footbar = () => (<>
 
@@ -58,10 +59,10 @@ export const Footbar = () => (<>
 
 const FooterLinks = () => (
   <ul className="footer-links">
-    <li><a href="/about">About us</a></li>
-    <li><a href="/studio">Studio</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/contact">Contact Us</a></li>
+    <li><Link to="/about">About us</Link></li>
+    <li><Link to="/studio">Studio</Link></li>
+    <li><Link to="/services">Services</Link></li>
+    <li><Link to="/contact">Contact Us</Link></li>
   </ul>
 );
 

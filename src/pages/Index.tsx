@@ -2,10 +2,12 @@ import { ArrowRight, Lightbulb, Mic, Users } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import Footbar from "@/components/Footbar";
 import musicImg from "@/assets/music-studio.jpg";
+import musicImg2 from "@/assets/music.jpg";
 import podcastImg from "@/assets/podcast-studio.jpg";
 import magicImg from "@/assets/magic-mic.jpg";
 import magicVideo from "@/assets/video/bestVideo.mp4";
 import homScreen from "@/assets/video/homScreen.mp4";
+import { Link } from 'react-router-dom';
 
 const features = [
   { num: "02", icon: Mic, title: "Experienced Team", body: "Our engineers and producers bring skill, creativity and attention to detail to every project." },
@@ -37,8 +39,8 @@ const Index = () => {
             delivers clarity, creativity, and excellence in every beat.
           </p>
           <div className="d-flex align-items-center justify-content-center gap-3 flex-wrap">
-            <a href="/booking" className="btn-studio btn-gold">Book Session</a>
-            <a href="/about" className="btn-studio btn-ghost">View More</a>
+             <Link to="/booking"  className="btn-studio btn-gold">Book Session</Link>
+             <Link to="/about" className="btn-studio btn-ghost">View More</Link>
           </div>
         </div>
         <div className="position-absolute bottom-0 start-0 w-100 z-0">
@@ -89,10 +91,10 @@ const Index = () => {
         <h2 className="section-title mb-5">Our Studio Spaces</h2>
         <div className="studio-parent">
           {[
-            { img: musicImg, label: "Music Studio" },
+            { img: musicImg, label: "Rehearsal Studio" },
             { img: podcastImg, label: "Podcast Studio" },
-            { img: musicImg, label: "Music Studio" },
-            { img: musicImg, label: "Music Studio" },
+            { img: musicImg2, label: "Recording Studio" },
+            // { img: musicImg, label: "Music Studio" },
           ].map((space, i) => (
             <div className="studioCol" key={i}>
               <div className="media-card">
@@ -131,9 +133,9 @@ const Index = () => {
             <p className="text-muted-custom mb-4" style={{ maxWidth: "32rem" }}>
               Ready to create your signature sound? Book a session with us today and let's bring your vision to life.
             </p>
-            <a href="/booking" className="btn-studio btn-gold">
+            <Link to="/booking" className="btn-studio btn-gold">
               Book Session <ArrowRight className="icon-sm" />
-            </a>
+            </Link>
           </div>
           <div className="magic-image">
             <div className="mediaCard aspect-square">
